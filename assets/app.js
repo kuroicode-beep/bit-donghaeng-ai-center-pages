@@ -1,7 +1,7 @@
 /* 파일: dist/assets/app.js — 콘텐츠 체험과 접근성 조작 */
 "use strict";
-const APP_VERSION = "0.1.0";
-const VERSION_HISTORY = [{ version: "0.1.0", date: "2026-11-02", summary: "교육 소개, 콘텐츠 체험, 앱 안내와 협력 제안 페이지를 만들었어요." }];
+const APP_VERSION = "0.1.1";
+const VERSION_HISTORY = [{ version: "0.1.1", date: "2026-11-03", summary: "임시 로고를 AI 교육 센터로 정리하고, 빛의 동행 자원봉사와 지역복지관 제안 문구를 반영했어요." }, { version: "0.1.0", date: "2026-11-02", summary: "교육 소개, 콘텐츠 체험, 앱 안내와 협력 제안 페이지를 만들었어요." }];
 const LESSONS = [
   {
     category: "AI 첫걸음", title: "AI는 어떤 일을 도와줄까요?", summary: "AI가 잘하는 일과 함께 살펴볼 점을 알아봐요.",

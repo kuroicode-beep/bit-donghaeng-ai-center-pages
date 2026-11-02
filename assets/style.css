@@ -169,7 +169,7 @@ details[open] > summary > span[aria-hidden] { transform: rotate(45deg); }
 .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 43px 0 26px; }
 .footer-top { display: flex; justify-content: space-between; align-items: center; gap: 30px; padding-bottom: 35px; border-bottom: 1px solid var(--border); }
 .footer-brand { font-size: 1.3rem; font-weight: 700; }
-.footer-brand span { font-size: .82rem; font-weight: 400; color: var(--text-sub); margin-left: 8px; }
+.footer-brand span { display: block; font-size: .82rem; font-weight: 400; color: var(--text-sub); margin-top: 5px; }
 .footer-top > div > p:last-child { margin-top: 9px; font-size: .8rem; color: var(--text-sub); }
 .back-top { display: flex; align-items: center; min-height: 50px; gap: 16px; font-size: .78rem; white-space: nowrap; }
 .footer-bottom { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; margin-top: 30px; }

@@ -1,0 +1,233 @@
+/* ============================================================
+   SVIL 디자인 토큰 정본 (색상 · 폰트 · 대비 프리셋 3종)
+   원본: C:\Projects\SVIL-Tarot\src\styles\tokens.css 1~260줄 발췌
+        (261줄 이후의 앱 전용 컴포넌트 스타일은 제외)
+   에셋: ../fonts/web/ 을 프로젝트 public/fonts/ 로 복사해 쓴다.
+        @font-face의 url("/fonts/...")는 절대경로다 — 서브패스 배포면 상대경로로 고칠 것.
+   폰트: 라인시드 Thin(250)/Regular(400)/Bold(700) **실물 3굵기 보유**(LINE_SeedKR_2023.09.06 공식판,
+        SIL OFL 1.1). font-weight:700은 합성이 아니라 실제 Bold 파일을 쓴다.
+   ============================================================ */
+
+/* SVIL 표준 글꼴 — 전부 로컬 번들(CDN 금지). 맑은 고딕은 Windows 기본 제공.
+   경로는 CSS 파일 기준 상대경로라 서브패스 배포에서도 안전하다. */
+@font-face {
+  font-family: "LINESeedKR";
+  src: url("./fonts/LINESeedKR-Rg.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 이 앱은 버튼·라벨에 font-weight:700을 광범위하게 쓴다. Bold 파일이 없으면 브라우저가
+   Regular를 굵게 '합성'하는데, 합성 볼드는 획이 뭉개져 저시력 사용자에게 오히려 불리하다.
+   파일이 없으면 이 규칙은 조용히 무시되고 지금까지처럼 합성으로 폴백하므로 넣어 둬도 안전하다.
+   LINE Seed는 무료 배포(line.me/en/seed)라 LINESeedKR-Bd.woff2를 public/fonts/에 넣으면 바로 적용된다. */
+@font-face {
+  font-family: "LINESeedKR";
+  src: url("./fonts/LINESeedKR-Bd.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root {
+  --bg: #0d0d12;
+  --surface: #16161d;
+  --surface-2: #1f1f2a;
+  --border: #3a3a48;
+  --border-strong: #6b6b82;
+  --text: #f5f5f7;
+  --text-sub: #c9c9d4;
+  --accent: #7ec8ff;
+  --accent-strong: #b3ddff;
+  --accent-max: #d6ecff;
+  --positive: #7ee2a8;
+  --warning: #ffd479;
+  --negative: #ff9b9b;
+  --focus: #ffd479;
+  /* 강조(primary) 계열.
+     저시력 사용자에게 어두운 화면 속 밝은 바탕 버튼은 헤일레이션(번짐)·눈부심을 일으킨다.
+     그래서 강조는 "밝은 바탕"이 아니라 "짙은 회색 바탕 + 흰 테두리 + 흰 글자"로 준다.
+     밝은 색은 글자·테두리에만 쓰고 넓은 면적을 채우지 않는다. */
+  --primary-surface: #303038;
+  --primary-surface-hover: #3d3d47;
+  /* 버튼 테두리·글자. 흰색이라 페이지 배경 대비 19.38:1, 버튼 바탕 대비 13.08:1(둘 다 AAA). */
+  --primary-border: #ffffff;
+  --on-primary: #ffffff;
+  /* 노랑은 이제 포커스 링 전용이다. 버튼이 흰색 계열이라 포커스가 유일한 노랑이 되어 혼동이 없다. */
+  --yellow: #ffd94a;
+  --bg-glow: #1a1a2e;
+  --img-backdrop: #000000;
+  --font-size-base: 18px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --touch-min: 50px;
+  --font-ui: "LINESeedKR", "Malgun Gothic", "Segoe UI", sans-serif;
+  --font-mono: Consolas, "Courier New", monospace;
+  /* rem은 <html> 기준이다. 커스텀 속성만 바꾸면 rem으로 선언된 UI 텍스트가
+     '글자 크기' 설정을 따라오지 않는다. 루트 자체를 움직여야 전부 같이 커진다. */
+  font-size: var(--font-size-base);
+}
+
+/* 저시력 앱이라 상한을 넉넉히 둔다. rem 요소가 함께 커지도록 :root의 font-size를 움직인다. */
+[data-font-size='xs'] {
+  --font-size-base: 16px;
+}
+
+[data-font-size='sm'] {
+  --font-size-base: 18px;
+}
+
+[data-font-size='md'] {
+  --font-size-base: 20px;
+}
+
+[data-font-size='lg'] {
+  --font-size-base: 24px;
+}
+
+[data-font-size='xl'] {
+  --font-size-base: 28px;
+}
+
+/* 초고대비 — 순수 검정 바탕에 노랑/흰색. 잔여 색조까지 걷어내 최대 대비를 만든다. */
+[data-contrast='max'] {
+  --bg: #000000;
+  --bg-glow: #000000;
+  --surface: #0a0a0a;
+  --surface-2: #141414;
+  --border: #767676;
+  --border-strong: #b0b0b0;
+  --text: #ffffff;
+  --text-sub: #e6e6e6;
+  --accent: #9ad8ff;
+  --accent-strong: #cfeaff;
+  --accent-max: #ffffff;
+  --yellow: #ffd400;
+  --primary-border: #ffffff;
+  --on-primary: #ffffff;
+  --primary-surface: #242424;
+  --primary-surface-hover: #333333;
+  --positive: #7dff9f;
+  --negative: #ff8f8f;
+  --warning: #ffd400;
+  --focus: #ffd400;
+}
+
+/* 저글레어 소프트 다크 — 난시·난독증 사용자는 밝은 글자가 번져 보여 오히려 대비를 낮춘 쪽이 편하다.
+   본문 대비를 13.7:1 수준으로 낮춰 눈부심을 줄이되 AAA(7:1)는 유지한다. */
+[data-contrast='soft'] {
+  --bg: #12121a;
+  --bg-glow: #191926;
+  --surface: #1b1b25;
+  --surface-2: #23232f;
+  --border: #4a4a58;
+  --border-strong: #7b7b8e;
+  --text: #dcdce4;
+  --text-sub: #b6b6c2;
+  --accent: #86bfe8;
+  --accent-strong: #a9d3f0;
+  --accent-max: #c8e4f8;
+  --yellow: #e8c968;
+  --primary-border: #dcdce4;
+  --on-primary: #dcdce4;
+  --primary-surface: #2e2e38;
+  --primary-surface-hover: #393945;
+  --positive: #86ceA0;
+  --negative: #e59595;
+  --warning: #e0c072;
+  --focus: #e8c968;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  word-break: keep-all;
+  color: var(--text);
+  background: var(--bg);
+  background-image: radial-gradient(circle at 50% 30%, var(--bg-glow) 0%, var(--bg) 70%);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 배경 그라디언트와 상단바 블러는 장식이다. 어지럽거나 대비를 떨어뜨리는 사용자를 위해 끌 수 있게 한다.
+   시스템 설정(prefers-reduced-transparency / prefers-contrast)도 같은 결과를 내도록 함께 건다. */
+[data-plain-bg='on'] body,
+[data-contrast='max'] body {
+  background-image: none;
+}
+
+[data-plain-bg='on'] .top-bar,
+[data-contrast='max'] .top-bar {
+  background: var(--bg);
+  backdrop-filter: none;
+}
+
+[data-plain-bg='on'] .home-silhouette {
+  display: none;
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  body {
+    background-image: none;
+  }
+
+  .top-bar {
+    background: var(--bg);
+    backdrop-filter: none;
+  }
+
+  .home-silhouette {
+    opacity: 0.06;
+  }
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* 버튼 테두리가 흰색이라 포커스 링을 노랑 전용으로 남겼다.
+   노랑과 흰색은 서로 1.41:1뿐이라 맞붙으면 구분이 안 되므로, 어두운 바탕이 비치는
+   3px 간격(outline-offset)을 반드시 둔다. 간격은 흰 테두리와 19.38:1, 노랑과 13.79:1로 갈린다.
+   box-shadow는 overflow가 있는 조상에서 잘리므로 쓰지 않는다. */
+:focus-visible {
+  outline: 4px solid var(--focus);
+  outline-offset: 3px;
+}
